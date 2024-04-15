@@ -35,8 +35,22 @@ public class DataParsing {
 
         System.out.println("\n=============================\n");
         //동아제약인 약품명만 꺼내기
-        JSONObject a =  (JSONObject) json.get("items");
-        System.out.println(a);
+        JSONObject body = (JSONObject) json.get("body");
+        System.out.println(body);
+
+        JSONObject items =  (JSONObject) body.get("items");
+        System.out.println(items.get(3));
+
+        for(int i = 0; i < items.size(); i++){
+            JSONObject medi = (JSONObject) items.get(i);
+
+            String entpName = (String) medi.get("entpName");
+
+            if(entpName.contains("동아제약")){
+                String itemName = (String)medi.get("itemName");
+                System.out.println(itemName);
+            }
+        }
 
 
     }
